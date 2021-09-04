@@ -1,3 +1,0 @@
-D:\cmake3.17\cmake-3.17.0\bin\cmake.exe -E rm -f CMakeFiles\List.dir/objects.a
-D:\mingw64\bin\ar.exe cr CMakeFiles\List.dir/objects.a @CMakeFiles\List.dir\objects1.rsp
-D:\mingw64\bin\gcc.exe    -Wl,--whole-archive CMakeFiles\List.dir/objects.a -Wl,--no-whole-archive  -o List.exe -Wl,--out-implib,libList.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\List.dir\linklibs.rsp

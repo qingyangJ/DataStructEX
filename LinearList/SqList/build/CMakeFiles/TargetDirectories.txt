@@ -1,3 +1,0 @@
-D:/C++Demo/DateStruct/LinearList/SqList/build/CMakeFiles/List.dir
-D:/C++Demo/DateStruct/LinearList/SqList/build/CMakeFiles/edit_cache.dir
-D:/C++Demo/DateStruct/LinearList/SqList/build/CMakeFiles/rebuild_cache.dir
