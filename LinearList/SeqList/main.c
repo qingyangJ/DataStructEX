@@ -1,10 +1,11 @@
 #include "SeqList.h"
 #include<stdio.h>
 
-int main(int argc, char *agrv[]) {
+// 基本操作
+void test0() {
     SeqList seqL;
     
-    if(!InitList(&seqL)) return -1;
+    InitList(&seqL);
     InsertElem(&seqL, 1, 10);
     InsertElem(&seqL, 2, 50);
     TraverseList(&seqL);
@@ -17,9 +18,32 @@ int main(int argc, char *agrv[]) {
     printf("GetElem:%d\n",GetElem(&seqL, pos));
     printf("The value:%d---pos:%d\n", 50, LocateElem(&seqL, 50));
     printf("The value:%d---pos:%d\n", 2, LocateElem(&seqL, 2));
-    if(!ListEmpty(&seqL)) printf("List is Empty--!\n");
+    if(ListIsEmpty(&seqL)) printf("List is Empty--!\n");
     DestroyList(&seqL);
-    if(!ListEmpty(&seqL)) printf("Destroyed List is Empty--!\n");
+    if(ListIsEmpty(&seqL)) printf("Destroyed List is Empty--!\n");
+}
 
+
+// DelMin
+void test1() {
+    SeqList s1;
+    InitList(&s1);
+    int n = 10;
+    for(int i =1; i<n; i++) {
+        InsertElem(&s1, i, i*6);
+    }
+    InsertElem(&s1, 6, 1);
+    if(ListIsEmpty(&s1)) {
+        printf("List is empty.\n");
+    }
+    TraverseList(&s1);
+    printf("Min:%d\n", DelMin(&s1));
+    TraverseList(&s1);
+}
+
+
+int main(int argc, char *agrv[]) {
+   
+    test1();
     return 0;
 }

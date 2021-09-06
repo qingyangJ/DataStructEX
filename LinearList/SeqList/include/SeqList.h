@@ -15,7 +15,7 @@ typedef struct SeqList
 }SeqList;
 
 //  initial
-BOOL InitList(SeqList* const L);
+void InitList(SeqList* const L);
 //  insert seqList
 void InsertElem(SeqList* const L, int pos, ElemType elem);
 
@@ -28,12 +28,14 @@ int LocateElem(const SeqList* const L, ElemType elem);
 //  按位查找，并返回其值
 int GetElem(const SeqList* const L, int pos);
 //  判空
-BOOL ListEmpty(const SeqList* const L);
+BOOL ListIsEmpty(const SeqList* const L);
 //  销毁线性表
 void DestroyList(SeqList* L);
 
 //  遍历
 void TraverseList(SeqList* const L);
 
-//  delete min,return value
+/*  从顺序表中删除具有最小值的元素（假设唯一）并由函数返回被删除元素的值，
+    空出的位置由最后一个元素填补，若顺序表为空，则显示出错信息并退出。
+*/
 ElemType DelMin(SeqList* const L);

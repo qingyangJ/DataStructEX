@@ -5,21 +5,23 @@
 
 
 //  initial
-BOOL InitList(SeqList* const L) {
+void InitList(SeqList* const L) {
     L->data = (ElemType*)malloc(sizeof(ElemType)*MAXSIZE);
-    if(!L->data) return FALSE;
+    if(!L->data) {
+        printf("³õÊ¼»¯ÏßĞÔ±íÊ§°Ü.\n");
+        return;
+    }
     L->length = 0;
     L->MaxSize = MAXSIZE;
-    return TRUE;
 }
 //  insert seqList
 void InsertElem(SeqList* const L, int pos, ElemType elem) {
-    //  åˆ¤æ–­ i æ˜¯å¦åˆæ³•
+    // ÅĞ¶ÏposÊÇ·ñºÏ·¨
     if(pos<1 || pos>L->length+1) {
         printf("SeqInsertElem's pos is illegal!\n");
         return;
     } 
-    //  åˆ¤æ–­æ˜¯å¦æœ‰ç©ºé—´æ’å…¥
+    // ÅĞ¶Ï¿Õ¼äÊÇ·ñ×ã¹»
     if(L->length >= MAXSIZE) {
         ElemType *p = (ElemType*)realloc(L->data, (L->MaxSize+1)*sizeof(ElemType));
         if(!p) {
@@ -29,7 +31,7 @@ void InsertElem(SeqList* const L, int pos, ElemType elem) {
         L->data = p;
         L->MaxSize++;
     }
-    //  æ’å…¥
+    // ²åÈë
     for(int j = L->length; j>=pos; j--) {
         L->data[j] = L->data[j-1];
     }
@@ -37,9 +39,9 @@ void InsertElem(SeqList* const L, int pos, ElemType elem) {
     L->length++;
 }
 
-//  åˆ é™¤
+//  É¾³ıÏßĞÔ±íÔªËØ
 void DeleteList(SeqList* const L, int pos, ElemType* const elem) {
-     //  åˆ¤æ–­ pos æ˜¯å¦åˆæ³•
+     //  ¼ì²éÎ»ĞòÊÇ·ñºÏ·¨
     if(pos<1 || pos>L->length+1) {
         printf("SqInsertElem's pos is illegal!\n");
         return;
@@ -51,12 +53,12 @@ void DeleteList(SeqList* const L, int pos, ElemType* const elem) {
     }
     L->length--;
 }
-//  æ±‚è¡¨é•¿
+//  ·µ»ØÏßĞÔ±íµÄ³¤¶È
 int ListLength(const SeqList* const L) {
     printf("The length of SeqList is :%d\n", L->length);
     return L->length;
 }
-//  æŒ‰å€¼æŸ¥æ‰¾,å¹¶è¿”å›å…¶ä½åº
+//  ²éÕÒÔªËØ£¬·µ»ØÆäÎ»Ğò
 int LocateElem(const SeqList* const L, ElemType elem) {
     for(int i = 0; i<L->length;i++) {
         if(L->data[i] == elem) {
@@ -66,9 +68,9 @@ int LocateElem(const SeqList* const L, ElemType elem) {
     printf("There is No element in SeqList --\n");
     return -1;
 }
-//  æŒ‰ä½æŸ¥æ‰¾ï¼Œå¹¶è¿”å›å…¶å€¼
+//  »ñÈ¡Ö¸¶¨Î»ĞòÉÏµÄÔªËØ
 int GetElem(const SeqList* const L, int pos) {
-    //  åˆ¤æ–­ pos æ˜¯å¦åˆæ³•
+    //  ¼ì²éposºÏ·¨ĞÔ
     if(pos<1 || pos>L->length+1) {
         printf("SqInsertElem's pos is illegal!\n");
         return -1;
@@ -76,21 +78,21 @@ int GetElem(const SeqList* const L, int pos) {
     return L->data[pos-1];
 }
 
-//  åˆ¤ç©º
-BOOL ListEmpty(const SeqList* const L) {
+//  ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+BOOL ListIsEmpty(const SeqList* const L) {
     if(L->length<1) {
-        return FALSE;
+        return TRUE;
     }
-    return TRUE;
+    return FALSE;
 }
-//  é”€æ¯çº¿æ€§è¡¨
+//  Ïú»ÙÏßĞÔ±í--¼ÇµÃÊÍ·ÅÖ¸Õë
 void DestroyList(SeqList* L) {
     L->length = 0;
     L->MaxSize = 0;
     free(L->data);
     L->data = NULL;
 }
-//  éå†
+//  ±éÀúÏßĞÔ±í
 void TraverseList(SeqList* const L) {
     printf("SeqList: ");
     for(int i = 1; i<L->length+1; i++) {
@@ -99,7 +101,21 @@ void TraverseList(SeqList* const L) {
     printf("\n");
 }
 
-//  delete min,return value
-ElemType DelMin(SeqList* const L) {
 
+ElemType DelMin(SeqList* const L) {
+    // ÅĞ¿Õ
+    if(L->length < 1) {
+        printf("DeMin() error! List is empty.\n");
+        exit(-1);
+    }
+    int min = L->data[0];
+    int index = 0;
+    for(int i = 1; i<L->length; i++) {
+        if(min > L->data[i]) {
+            min = L->data[i];
+            index = i;
+        }
+    }
+    L->data[index] = L->data[L->length-1];
+    return min;
 }

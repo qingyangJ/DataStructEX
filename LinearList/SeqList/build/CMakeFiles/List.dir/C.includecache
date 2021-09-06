@@ -8,13 +8,9 @@
 
 ../include/SeqList.h
 
-D:/C++Demo/DateStruct/LinearList/SeqList/src/SeqList.c
+D:/C++Demo/DateStruct/LinearList/SeqList/main.c
 SeqList.h
-D:/C++Demo/DateStruct/LinearList/SeqList/src/SeqList.h
+D:/C++Demo/DateStruct/LinearList/SeqList/SeqList.h
 stdio.h
--
-stdlib.h
--
-string.h
 -
 
