@@ -23,34 +23,6 @@ void test00() {
     if(ListIsEmpty(&seqL)) printf("Destroyed List is Empty--!\n");
 }
 
-// 线性表赋值,循环输入线性表的元素，空格分隔，回车结束输入。
-void CreateL(SeqList* const L) {
-    if(!L) return;
-    printf("Windows enter Ctrl+Z to end the input.\n");
-    ElemType elem = 0;
-    int pos = 1;
-    while (1)
-    {
-        int ret = scanf("%d", &elem);
-        if(ret==0) {
-            printf("input error.\n");
-            fflush(stdin);
-            return;
-        }
-        if(ret == EOF) {
-            break;
-        }
-        InsertElem(L, pos, elem);
-        pos++;
-    }
-    // 显示创建的线性表
-    if(ListIsEmpty(L)) {
-        printf("List is empty.\n");
-        return;
-    }
-    printf("Length:%d\n", ListLength(L));
-    TraverseList(L);
-}
 
 // DelMin
 void test01() {
@@ -77,12 +49,49 @@ void test01() {
 void test02() {
     SeqList s1;
     InitList(&s1);
-    CreateL(&s1);
-    ListIsEmpty(&s1);
+    CreateList(&s1);
+    DelMin(&s1);
+    TraverseList(&s1);
+}
+// ListReverse
+void test03() {
+    SeqList s1;
+    InitList(&s1);
+    int n = 16;
+    for(int i =1; i<n; i++) {
+        InsertElem(&s1, i, i);
+    }
+    TraverseList(&s1);
+    ListReverse(&s1);
+    TraverseList(&s1);
+}
+// ValueDel
+void test04() {
+    SeqList s1;
+    InitList(&s1);
+    CreateList(&s1);
+    // ValueDel(&s1, 5);
+    // ValueDel4(&s1, 5 , 9);
+    // ValueDel5(&s1, 5 , 9);
+    DelRepeat(&s1);
+    TraverseList(&s1);
+}
+// mergeLists
+void test05() {
+    SeqList A,B,C;
+    InitList(&A);
+    CreateList(&A);
+    InitList(&B);
+    CreateList(&B);
+    InitList(&C);
+    // CreateList(&C);
+    MergeList(&A, &B, &C);
+    TraverseList(&C);
+
 }
 int main(int argc, char *agrv[]) {
    
-    test02();
-
+    test05();
+    
     return 0;
 }
