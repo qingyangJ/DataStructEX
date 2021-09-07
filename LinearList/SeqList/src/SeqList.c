@@ -311,3 +311,27 @@ void MergeList(SeqList* const A, SeqList* const B, SeqList* const C) {
     }
     C->length = k;
 }
+/*  8.
+    已知在一维数组A[m+n]中依次存放两个线性表(a1...am)和(b1...bn)，
+    编写函数，将数组中两个顺序表的位置互换，即(b1..bn)放在(a1...am)之前。
+    先将整体逆置，存储位置确定，再逐步逆转
+*/
+void ReverseArr(ElemType A[], int left, int right, int arrsize) {
+    // 判断参数合法性
+    if(left>=right || right>=arrsize) return;
+    // 逆置
+    int mid = (left+right)/2;
+    for(int i = 0; i<=mid-left; i++) {
+        ElemType temp = A[left+i];
+        A[left+i] = A[right-i];
+        A[right-i] = temp;
+    }
+}
+void Exchange(ElemType A[], int m, int n, int arrsize) {
+    // 整体逆置
+    ReverseArr(A, 0, m+n-1, arrsize);
+    // 前部分逆置
+    ReverseArr(A, 0, n-1, arrsize);
+    // 后部分逆置
+    ReverseArr(A, n, m+n-1, arrsize);
+}

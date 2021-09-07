@@ -89,9 +89,35 @@ void test05() {
     TraverseList(&C);
 
 }
+// reverse arr
+void test06() {
+    int m = 8;
+    int n = 6;
+    int i = 0;
+    int arrsize = 100;
+    ElemType A[100] = {0};
+    // 初始化 am
+    for(i = 0;i<m;i++) {
+        A[i] = i;
+    }
+    // 初始化 bn
+    for(;i<m+n;i++) {
+        A[i] = 2*n-i;
+    }
+    printf("Reverse before\n");
+    for(i = 0;i<m+n;i++) {
+        printf("%d--", A[i]);
+    }
+    Exchange(A, m, n, arrsize);
+    printf("\nReverse after\n");
+    for(i = 0;i<m+n;i++) {
+        printf("%d--", A[i]);
+    }
+
+}
 int main(int argc, char *agrv[]) {
    
-    test05();
+    test06();
     
     return 0;
 }
