@@ -35,7 +35,13 @@ void DestroyList(SeqList* L);
 //  遍历
 void TraverseList(SeqList* const L);
 
-/*  从顺序表中删除具有最小值的元素（假设唯一）并由函数返回被删除元素的值，
+
+/*  
+    从顺序表中删除具有最小值的元素（假设唯一）并由函数返回被删除元素的值，
     空出的位置由最后一个元素填补，若顺序表为空，则显示出错信息并退出。
 */
-ElemType DelMin(SeqList* const L);
+ElemType DelMin(SeqList* const L); 
+/*
+    将顺序表L的所有元素逆置，要求算法的空间复杂度为O(1)
+
+*/

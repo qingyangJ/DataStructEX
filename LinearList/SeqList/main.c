@@ -2,7 +2,7 @@
 #include<stdio.h>
 
 // 基本操作
-void test0() {
+void test00() {
     SeqList seqL;
     
     InitList(&seqL);
@@ -23,9 +23,37 @@ void test0() {
     if(ListIsEmpty(&seqL)) printf("Destroyed List is Empty--!\n");
 }
 
+// 线性表赋值,循环输入线性表的元素，空格分隔，回车结束输入。
+void CreateL(SeqList* const L) {
+    if(!L) return;
+    printf("Windows enter Ctrl+Z to end the input.\n");
+    ElemType elem = 0;
+    int pos = 1;
+    while (1)
+    {
+        int ret = scanf("%d", &elem);
+        if(ret==0) {
+            printf("input error.\n");
+            fflush(stdin);
+            return;
+        }
+        if(ret == EOF) {
+            break;
+        }
+        InsertElem(L, pos, elem);
+        pos++;
+    }
+    // 显示创建的线性表
+    if(ListIsEmpty(L)) {
+        printf("List is empty.\n");
+        return;
+    }
+    printf("Length:%d\n", ListLength(L));
+    TraverseList(L);
+}
 
 // DelMin
-void test1() {
+void test01() {
     SeqList s1;
     InitList(&s1);
     int n = 10;
@@ -39,11 +67,22 @@ void test1() {
     TraverseList(&s1);
     printf("Min:%d\n", DelMin(&s1));
     TraverseList(&s1);
+    DestroyList(&s1);
+    if(ListIsEmpty(&s1)) {
+        printf("List is empty.\n");
+    }
 }
 
-
+// Create
+void test02() {
+    SeqList s1;
+    InitList(&s1);
+    CreateL(&s1);
+    ListIsEmpty(&s1);
+}
 int main(int argc, char *agrv[]) {
    
-    test1();
+    test02();
+
     return 0;
 }

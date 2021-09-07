@@ -1,0 +1,29 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build",
+            "command": "D:/mingw64/bin/gcc.exe",
+            "args": [
+                "-g",
+                "./main.c",
+                "./src/SeqList.c",
+                "-Iinclude",
+                "-o",
+                "${workspaceFolder}/LinearList/SeqList/build/List.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/LinearList/SeqList"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ],
+    "version": "2.0.0"
+}
