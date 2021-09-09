@@ -84,4 +84,18 @@ void Exchange(ElemType A[], int m, int n, int arrsize);
     设计一个算法，用最少时间在表中查找数值为x的元素，
     若找到，则与其后继元素位置相交换，若找不到，则将其插入表中，
     并保持表中元素递增。
+    二分查找，后移插入
 */
+void SearchMin(SeqList* const L, ElemType elem);
+/* 10.
+    将n个（n>1）个整数存到一维数组R中，将R中的序列循环左移P个位置(0<p<n)
+    个位置。
+    先将前p个元素逆置，再将后p个元素逆置，再整体逆置-同8。
+*/
+void CircleExchange(ElemType A[], int left, int right,  int arrsize, int p);
+/*  11.一个长度为L(L>=1)的升序序列S，处在第[L/2]（向上取整）个位置的数称为S的中位数。
+    两个序列的中位数是含他们所有元素的升序序列的中位数。现在有登场的A,B两个升序序列。
+    求其中位数。要求T(O)，S(O)最优。
+    设A的中位数为a,B的为b,当a>b时，中位数所在区间[b,a],else所在区间[a,b]
+*/
+void MidNum(SeqList* const A, SeqList* const B, ElemType* midnum);

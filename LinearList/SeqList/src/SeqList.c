@@ -335,3 +335,90 @@ void Exchange(ElemType A[], int m, int n, int arrsize) {
     // 后部分逆置
     ReverseArr(A, n, m+n-1, arrsize);
 }
+/*  9.
+    线性表(a1..an)中的元素递增有序且顺序存储于计算机内。
+    设计一个算法，用最少时间在表中查找数值为x的元素，
+    若找到，则与其后继元素位置相交换，若找不到，则将其插入表中，
+    并保持表中元素递增。
+    二分查找，后移插入
+*/
+void SearchMin(SeqList* const L, ElemType elem) {
+    int left = 0;
+    int right = L->length-1;
+    int mid = 0;
+    while (left<=right)
+    {
+        mid = (left+right)/2;
+        if(L->data[mid] == elem && mid != L->length-1) {
+            int temp = L->data[mid];
+            L->data[mid] = L->data[mid+1];
+            L->data[mid+1] = temp;
+            return;
+        }
+        if(L->data[mid] < elem) {
+            left = mid+1;
+        } else {
+            right = mid-1;
+        }
+    }
+    // 插入
+    for(int i = L->length-1; i<right; right--) {
+        L->data[right+1] = L->data[right];
+    }
+    L->data[right+1] = elem;
+}
+/* 10.
+    将n个（n>1）个整数存到一维数组R中，将R中的序列循环左移P个位置(0<p<n)
+    个位置。
+    先将前p个元素逆置，再将后p个元素逆置，再整体逆置-同8。
+*/
+void CircleExchange(ElemType A[], int left, int right, int arrsize, int p) {
+    ReverseArr(A, 0, p-1, arrsize);
+    ReverseArr(A, p, right, arrsize);
+    ReverseArr(A, 0, right, arrsize);
+}
+/*  11.一个长度为L(L>=1)的升序序列S，处在第[L/2]（向上取整）个位置的数称为S的中位数。
+    两个序列的中位数是含他们所有元素的升序序列的中位数。现在有登场的A,B两个升序序列。
+    求其中位数。要求T(O)，S(O)最优。
+    设A的中位数为a,B的为b,当a>b时，中位数所在区间[b,a],else所在区间[a,b]
+*/
+void MidNum(SeqList* const A, SeqList* const B, ElemType* midnum) {
+    int s1 = 0;
+    int d1 = A->length-1;
+    int m1 = 0 ;
+    int s2 = 0;
+    int d2 = B->length-1;
+    int m2 = 0;
+
+    while (s1 != d1 || s2 != d2)
+    {
+        m1 = (s1+d1)/2;
+        m2 = (s2+d2)/2;
+        if(A->data[m1] == B->data[m2]) {
+            *midnum = A->data[m1];
+            return;
+        }
+        if(A->data[m1] > B->data[m2]) {
+            if((s1+d1)%2 == 0) { // 元素个数为奇数
+                d1 = m1;
+                s2 = m2;
+            } else {
+                d1 = m1;
+                s2 = m2+1;
+            }
+        } else {
+            if((s1+d1)%2 == 0) { // 元素个数为奇数
+                d2 = m2;
+                s1 = m1;
+            } else {
+                d2 = m2;
+                s1 = m1+1;
+            }
+        }
+        
+    }
+
+    *midnum = A->data[s1]<B->data[s2] ? A->data[s1]:B->data[s2];
+    
+
+}

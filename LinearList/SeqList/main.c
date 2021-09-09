@@ -115,9 +115,50 @@ void test06() {
     }
 
 }
+// SearchMin
+void test07() {
+    SeqList A;
+    InitList(&A);
+    CreateList(&A);
+    SearchMin(&A, 5);
+    TraverseList(&A);
+}
+// Circle
+void test08() {
+    int n = 10;
+    int i = 0;
+    int arrsize = 100;
+    ElemType A[100] = {0};
+    // 初始化 A
+    for(i = 0;i<n;i++) {
+        A[i] = i;
+    }
+    printf("Reverse before\n");
+    for(i = 0;i<n;i++) {
+        printf("%d--", A[i]);
+    }
+    CircleExchange(A, 0, n-1, n, 4);
+    printf("\nReverse after\n");
+    for(i = 0;i<n;i++) {
+        printf("%d--", A[i]);
+    }
+
+}
+
+// MidNum
+void test09() {
+    SeqList A,B;
+    InitList(&A);
+    CreateList(&A);
+    InitList(&B);
+    CreateList(&B);
+    int midnum = 0;
+    MidNum(&A, &B, &midnum);
+    printf("---midnum:%d\n",midnum);
+}
 int main(int argc, char *agrv[]) {
    
-    test06();
+    test09();
     
     return 0;
 }
