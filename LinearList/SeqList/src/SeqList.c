@@ -419,6 +419,100 @@ void MidNum(SeqList* const A, SeqList* const B, ElemType* midnum) {
     }
 
     *midnum = A->data[s1]<B->data[s2] ? A->data[s1]:B->data[s2];
-    
+}
 
+/*  12. 已知一个整数序列A(a0...an-1),(0<=ai<n)(0<=i<n)。若存在ap1=ap2=...apm=x
+且m>n/2,(0<=pk<n,1<=k<=m)，则称 x 为A的主元素。假设A中的n个元素保存在一个一维数组中，
+找出A的主元素，若存在主元素，则输出该元素，否则输出-1.
+    先找出现次数最多的数，再判断是否为主元素。
+*/
+ElemType SearchMainElem(SeqList* const A) {
+    // 找出现次数最多的数
+    int i = 1;
+    int num = A->data[0];
+    int count = 1;
+    while (i< A->length)
+    {
+        if(A->data[i] == num) {
+            count++;
+        } else {
+            if(count > 0) {
+                count--;
+            } else {
+                num = A->data[i];
+                count = 1;
+            } 
+        }
+        i++;
+    }
+    // 判断是否为主元素
+    // 统计次数
+    if(count > 0) {
+        for(i = count = 0; i< A->length; i++) {
+            if(A->data[i] == num) count++;
+        }
+    }
+    if(count > A->length/2) return num;
+    else return -1;
+}
+/*  13.一个含n（n>=1）个整数的数组，找出数组中未出现的最小正整数。
+    空间换时间
+*/
+ElemType SearchNMin(SeqList* const A) {
+    ElemType* B = (ElemType*)malloc(sizeof(int)*(A->length+1));
+    memset(B, 0, sizeof(int)*(A->length+1));
+    int i = 0;
+    for(i = 0; i<A->length; i++) {
+        if(A->data[i]>0 && A->data[i]<=A->length) {
+            B[A->data[i]-1] = 1;
+        }
+    }
+    for(i = 0; i<A->length; i++) {
+        if(B[i] == 0) break;
+    }
+    free(B);
+    B = NULL;
+    return i+1;
+}
+/*  14.定义一个三元组(a,b,c均为正数)的距离D = |a-b|+|b-c|+|c-a|。
+    给定一个非空整数集合S1,S2,S3，按照升序分别存储再三个数组中。计算出
+    所有可能的三元组(a,b,c)(a∈S1，b∈S2,c∈S3)中的最小距离。
+*/
+BOOL FirstISMin(ElemType a, ElemType b, ElemType c) {
+    if(a<=b && a<=c) return TRUE;
+    else return FALSE;
+}
+int MinD(SeqList* const S1, SeqList* const S2, SeqList* const S3) {
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int s1_i = 0;
+    int s2_j = 0;
+    int s3_k = 0;
+
+    int D = 0;
+    int Dmin = INT_MAX;
+    while (i<S1->length && j<S2->length && k<S3->length && Dmin>0)
+    {
+        D = abs(S1->data[i] - S2->data[j])+abs(S2->data[j] - S3->data[k])
+                +abs(S3->data[k] - S1->data[i]);
+        if(D < Dmin) {
+            s1_i = i;
+            s2_j = j;
+            s3_k = k;
+            Dmin = D; // 更新D
+        } 
+        // 更新最小的那个
+        if(FirstISMin(S1->data[i], S2->data[j], S3->data[k])) {
+            i++;
+        } else  {
+            if(FirstISMin(S2->data[j], S1->data[i], S3->data[k])) {
+                j++;
+            } else {
+                k++;
+            } 
+        }
+    }
+    printf("MIN(a, b, c): (%d, %d, %d)\n",S1->data[s1_i], S2->data[s2_j], S3->data[s3_k]);
+    return Dmin;
 }

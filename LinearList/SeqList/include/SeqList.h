@@ -4,6 +4,7 @@
 #define FALSE 0
 #define ElemType int
 #define MAXSIZE 100
+#define INT_MAX 0X7fffffff
 
 
 //  create dynamic seqList
@@ -99,3 +100,30 @@ void CircleExchange(ElemType A[], int left, int right,  int arrsize, int p);
     设A的中位数为a,B的为b,当a>b时，中位数所在区间[b,a],else所在区间[a,b]
 */
 void MidNum(SeqList* const A, SeqList* const B, ElemType* midnum);
+/*  12. 已知一个整数序列A(a0...an-1),(0<=ai<n)(0<=i<n)。若存在ap1=ap2=...apm=x
+且m>n/2,(0<=pk<n,1<=k<=m)，则称 x 为A的主元素。假设A中的n个元素保存在一个一维数组中，
+找出A的主元素，若存在主元素，则输出该元素，否则输出-1.
+    先找出现次数最多的数，再判断是否为主元素。
+*/
+ElemType SearchMainElem(SeqList* const A);
+/*  13.一个含n（n>=1）个整数的数组，找出数组中未出现的最小正整数。
+    空间换时间
+*/
+ElemType SearchNMin(SeqList* const A);
+/*  14.定义一个三元组(a,b,c均为正数)的距离D = |a-b|+|b-c|+|c-a|。
+    给定一个非空整数集合S1,S2,S3，按照升序分别存储再三个数组中。计算出
+    所有可能的三元组(a,b,c)(a∈S1，b∈S2,c∈S3)中的最小距离。
+*/
+BOOL FirstISMin(ElemType a, ElemType b, ElemType c);
+int MinD(SeqList* const S1, SeqList* const S2, SeqList* const S3);
+
+
+
+
+
+
+
+
+
+
+

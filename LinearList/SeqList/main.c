@@ -156,9 +156,39 @@ void test09() {
     MidNum(&A, &B, &midnum);
     printf("---midnum:%d\n",midnum);
 }
+// SearchMainElem
+void test10() {
+    SeqList A;
+    InitList(&A);
+    CreateList(&A);
+    int ret = SearchMainElem(&A);
+    printf("ret: %d", ret);
+}
+
+// SearchNMin
+void test11() {
+    SeqList A;
+    InitList(&A);
+    CreateList(&A);
+    int ret = SearchNMin(&A);
+    printf("ret: %d", ret);
+}
+void test12() {
+    SeqList S1, S2, S3;
+    InitList(&S1);
+    CreateList(&S1);
+    InitList(&S2);
+    CreateList(&S2);
+    InitList(&S3);
+    CreateList(&S3);
+    // 
+    int D = MinD(&S1, &S2, &S3);
+    printf("The minimum D : %d", D);
+}
+// MinD
 int main(int argc, char *agrv[]) {
    
-    test09();
+    test12();
     
     return 0;
 }
